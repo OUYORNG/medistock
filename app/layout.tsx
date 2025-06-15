@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
+import './style.css'
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -24,10 +24,30 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <head>
+        {/* Head content like meta, title, etc. */}
+      </head>
+      <body>
+        <div className="h-screen overflow-hidden md:hidden">
+          {/* Fixed Header */}
+          {/* <div className="fixed top-0 left-0 right-0 z-50">
+            <Header className="fixed bg-white top-0 left-0 right-0 z-50 block md:hidden" />
+          </div> */}
+
+          {/* Scrollable Content */}
+          <div style={{fontFamily: ''}} className="h-screen overflow-y-auto">
+            <main
+              className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col`}
+            >
+              {children}
+            </main>
+          </div>
+
+          {/* Fixed Footer */}
+          {/* <div className="fixed bottom-0 left-0 right-0 z-50">
+            <Footer className="fixed bg-white top-0 left-0 right-0 z-50 block md:hidden" />
+          </div> */}
+        </div>
       </body>
     </html>
   );
